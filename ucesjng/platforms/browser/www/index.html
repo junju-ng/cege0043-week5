@@ -132,7 +132,7 @@
           <a class="mdl-navigation__link" href=""onclick='addPointLinePoly(); return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Add Point, Line, Polygon</a>
           <a class="mdl-navigation__link" href=""onclick='trackLocation(); return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Track Location</a>
           <a class="mdl-navigation__link" href=""onclick='trackAndCircle(); return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Track and Circle</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
+          <a class="mdl-navigation__link" href=""onclick='getPort(); return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Get Port</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
@@ -154,7 +154,7 @@
 	<script src="js/leaflet.js"></script> <!-- needs to be at the end of the page because the DIV needs to be created before the map can be added to be DIV-->
 	<script src="js/leafletFunctions.js"></script>
 	<script src="js/userTracking.js"></script>
-	<script src="js/startup.js"></script>
+	<script>startup()</script>
 	<script src="js/utilities.js"></script>
   </body>
 </html>
