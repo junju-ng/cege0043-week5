@@ -1,0 +1,9 @@
+[submodule "ucesjng/www/images"]
+	path = ucesjng/www/images
+	url = https://github.com/junju-ng/cege0043-imagesReference.git
+[submodule "ucesjng/www/css"]
+	path = ucesjng/www/css
+	url = https://github.com/junju-ng/cege0043-cssReference
+[submodule "ucesjng/www/js"]
+	path = ucesjng/www/js
+	url = https://github.com/junju-ng/cege0043-jsReference.git
