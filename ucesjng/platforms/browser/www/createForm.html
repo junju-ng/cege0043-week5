@@ -1,0 +1,64 @@
+<!doctype html>
+<head>
+	<title>Simple Form Creation Examples</title>
+</head>
+
+<body>
+	<h1>This is a simple form</h1>
+	<div>
+		<!-- Add text box for typing in name !-->
+		<label for="name">Name</label>
+		<input type="text" size="25" id="name"/><br />
+		
+		<!-- Add text box for typing in surname !-->
+		<label for="surname">Surname</label>
+		<input type="text" size="25" id="surname"/><br />
+		
+		<!-- Add text box for typing in module title !-->
+		<label for="module">Module</label>
+		<input type="text" size="25" id="module"/><br />
+		
+		<!-- Provide coordinates !-->
+		<p> Please provide your coordinates </p>
+		<label for="latitude">Latitude</label>
+		<input type="text" size="25" id="latitude"/><br />
+		<label for="longitude">Longitude</label>
+		<input type="text" size="25" id="longitude"/><br />
+		
+		<!-- Add radio buttons for morning/afternoon lectures !-->
+		<p>Would you like lectures in the morning or afternoon?</p>
+			Morning <input type="radio" name="amorpm" id="morning" /><br />
+			Afternoon <input type="radio" name="amorpm" id="afternoon" /><br />
+		
+		
+		<!-- Add checkboxes for modules taken !-->
+		<p>Which modules are you taking?</p>
+			CEGEG077 <input type="checkbox" name="modules" id=check1 
+			value="CEGEG077" checked="yes"/><br /> <!-- CEGEG077 is checked !-->
+			CEGEG129 <input type="checkbox" name="modules" id=check2
+			value="CEGEG129"/><br />
+			CEGEG082 <input type="checkbox" name="modules" id=check3
+			value="CEGEG082"/><br />
+			CEGEG034 <input type="checkbox" name="modules" id=check4
+			value="CEGEG034"/><br />
+			
+		<!-- Add select boxes for first language !-->	
+		<p>What is your first language?</p>
+		<select name="languageselectbox" id="languageselectbox">
+			<option>English</option>
+			<option>Mandarin</option>
+			<option>Greek</option>
+			<option>Italian</option>
+			<option>Spanish</option>
+			<option>Other</option>
+		</select>
+		<br />
+		
+	</div>
+	
+	<!-- Button calling method startDataUpload() !-->
+	<button id="startUpload" onclick="startDataUpload()">Start Data Upload</button>
+	<!-- Add DIV so we have somewhere to show that the form has worked !-->
+	<div id="dataUploadResult">The result of the upload goes here</div>
+	<script src="uploadData.js"></script>
+</body>
