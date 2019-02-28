@@ -38,10 +38,12 @@ function startDataUpload(){
 
 var client; // global variable to hold AJAX request
 
-// create AJAX request
+// create AJAX requestto upload data
 function processData(postString){
 	client = new XMLHttpRequest();
-	client.open('POST','http://developer.cege.ucl.ac.uk:30296/reflectData',true);
+	postString = postString + "&port id=" + httpPortNumber;
+	var url = 'http://developer.cege.ucl.ac.uk:' + httpPortNumber + "/uploadData";
+	client.open('POST',ucl,true);
 	client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	client.onreadystatechange = dataUploaded;
 	client.send(postString);
