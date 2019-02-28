@@ -5,6 +5,16 @@ function trackAndCircle(){
 
 }
 
+function quizStartup(){
+	alert('Starting quiz');
+	document.addEventListener('DOMContentLoaded',function(){
+		getPort();
+		loadW3HTML();
+		trackLocation(); // function to automatically track user's location
+	},false);
+}
+
+// function to process the html
 function loadW3HTML(){
 	w3.includeHTML();
 }
