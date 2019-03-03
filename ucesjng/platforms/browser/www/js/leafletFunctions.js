@@ -4,8 +4,8 @@ function addPointLinePoly(){
 	alert("This will add a point, line and polygon.");
 	
 	// add a point
-	L.marker([51.5, -0.09]).addTo(mymap)
-	.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+	L.marker([51.524048, -0.139924]).addTo(mymap)
+	.bindPopup("<b>This is the Warren Street point.").openPopup();
 			
 	// add a line
 	var myLine = [
@@ -178,6 +178,7 @@ function loadFormDataLayer(formData){
 			
 	// change the map zoom so that all the data is shown
 	mymap.fitBounds(formDataLayer.getBounds());
+	closestFormPoint(); // get popup for closest point in formDataLayer
 }
 
 // process button click in formData popup
@@ -207,6 +208,34 @@ function checkAnswer(questionID){
 	//code to upload the answer to the server would go here
 	// call an AJAX routine using the data
 	// the answerSelected variable holds the number of the answer that the user picked
+}
+
+function closestFormPoint(){
+	// take leaflet formdata layer
+	// go through each point and measure distance to Warren Street
+	// show pop-up of closest point from Warren Street
+	var minDistance = 100000000000000000;
+	var closestFormPoint = 0;
+	// for this example, use latitude/longitude of Warren Street
+	// replace with user's location in assignment
+	var userlat = 51.524048;
+	var userlng = -0.139924;
+	formDataLayer.eachLayer(function(layer){
+		var distance = calculateDistance(userlat, userlng, layer.getLatLng().lat, layer.getLatLng().lng, 'K');
+		if (distance < minDistance){
+			minDistance = distance;
+			closestFormPoint = layer.feature.properties.id;
+		}
+	});
+	// for this to be a proximity alert, the minDistance must be
+	// closer than a given distance - you can check that here using an if statement
+	
+	// show popup for closest point
+	formDataLayer.eachLayer(function(layer){
+		if (layer.feature.properties.id == closestFormPoint){
+			layer.openPopup();
+		}
+	});
 }
 	
 // create red test marker
