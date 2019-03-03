@@ -1,9 +1,12 @@
 function trackAndCircle(){
 	trackLocation();
 	addPointLinePoly();
-	getEarthquakes();
-
+	//getEarthquakes();
 }
+
+//function getFormData(){
+//	callFormData();
+//}
 
 function quizStartup(){
 	alert('Starting quiz');
@@ -22,8 +25,9 @@ function loadW3HTML(){
 // add Point/Line/Circle data and track location automatically - useful for setting up different startup functions!
 function startup(){
 	document.addEventListener('DOMContentLoaded',function(){
-		trackAndCircle();
 		getPort();
+		//trackAndCircle();
 		loadW3HTML();
+		//callFormData();
 	},false);
 }

@@ -14,6 +14,8 @@ function getPort(){
 		httpsPortNumber = doc.getElementsByTagName("node-port-https").item(0).textContent;
 		
 		alert("Port: " + httpPortNumber); // alert that will output port number
+		trackAndCircle();
+		callFormData();
 	});
 	
 	// depending on whether we are in a browser or on a phone
