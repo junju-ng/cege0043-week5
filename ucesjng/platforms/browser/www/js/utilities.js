@@ -15,7 +15,7 @@ function getPort(){
 		
 		alert("Port: " + httpPortNumber); // alert that will output port number
 		trackAndCircle();
-		callFormData();
+		startFormDataLoad();
 	});
 	
 	// depending on whether we are in a browser or on a phone

@@ -85,63 +85,63 @@ function loadEarthquakelayer(earthquakedata){
 	mymap.fitBounds(earthquakelayer.getBounds());
 }
 
-var formClient; // define global variable to process AJAX request to get formdata
-var allForms;
+var xhrFormData; // define global variable to process AJAX request to get formdata
+//var allForms;
 var formDataLayer; // global variable to hold form data for later use
 
 // AJAX request function to load formdata
-function callFormData(){
-	formClient = new XMLHttpRequest();
+function startFormDataLoad(){
+	xhrFormData = new XMLHttpRequest();
 	var url = "http://developer.cege.ucl.ac.uk:" + httpPortNumber + "/getFormData/" + httpPortNumber; //get url with non-hardcoded port number
-	formClient.open("GET", url, true); // send to server
-	formClient.onreadystatechange = processFormData;
+	xhrFormData.open("GET", url, true); // send to server
+	xhrFormData.onreadystatechange = processFormData;
 	try {
-		formClient.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhrFormData.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	}
 	catch (e) {
 		// this only works in internet explorer
 	}
-	formClient.send();
+	xhrFormData.send();
 }
 
 // AJAX request function to load London POI data
 function getPOIData(){
-	formClient = new XMLHttpRequest();
+	xhrFormData = new XMLHttpRequest();
 	var url = "http://developer.cege.ucl.ac.uk:" + httpPortNumber + "/getGeoJSON/london_poi/geom"; //get url with non-hardcoded port number
-	formClient.open("GET", url, true); // send to server
-	formClient.onreadystatechange = processFormData;
+	xhrFormData.open("GET", url, true); // send to server
+	xhrFormData.onreadystatechange = processFormData;
 	try {
-		formClient.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhrFormData.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	}
 	catch (e) {
 		// this only works in internet explorer
 	}
-	formClient.send();
+	xhrFormData.send();
 }
 
 // AJAX request function to load London highways data
 function getHighwaysData(){
-	formClient = new XMLHttpRequest();
+	xhrFormData = new XMLHttpRequest();
 	var url = "http://developer.cege.ucl.ac.uk:" + httpPortNumber + "/getGeoJSON/london_highway/geom"; //get url with non-hardcoded port number
-	formClient.open("GET", url, true); // send to server
-	formClient.onreadystatechange = processFormData;
+	xhrFormData.open("GET", url, true); // send to server
+	xhrFormData.onreadystatechange = processFormData;
 	try {
-		formClient.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhrFormData.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	}
 	catch (e) {
 		// this only works in internet explorer
 	}
-	formClient.send();
+	xhrFormData.send();
 }
 
 // AJAX response function
 function processFormData(){
-	if (formClient.readState < 4){
+	if (xhrFormData.readState < 4){
 		console.log('Loading...');
 	}
-	else if (formClient.readyState === 4) { // 4 = response from server completely loaded
-		if (formClient.status > 199 && formClient.status < 300) {
-			var formData = formClient.responseText;
+	else if (xhrFormData.readyState === 4) { // 4 = response from server completely loaded
+		if (xhrFormData.status > 199 && xhrFormData.status < 300) {
+			var formData = xhrFormData.responseText;
 			loadFormDataLayer(formData);
 		}
 	}
@@ -151,7 +151,7 @@ function processFormData(){
 function loadFormDataLayer(formData){
 	// convert text to JSON
 	var formdatajson = JSON.parse(formData);
-	allForms = formdatajson;
+	//allForms = formdatajson;
 			
 	// load geoJSON earthquake layer using custom markers
 	formDataLayer = L.geoJSON(formdatajson,

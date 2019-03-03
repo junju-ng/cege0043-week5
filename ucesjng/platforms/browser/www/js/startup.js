@@ -4,10 +4,6 @@ function trackAndCircle(){
 	//getEarthquakes();
 }
 
-//function getFormData(){
-//	callFormData();
-//}
-
 function quizStartup(){
 	alert('Starting quiz');
 	document.addEventListener('DOMContentLoaded',function(){
@@ -26,8 +22,6 @@ function loadW3HTML(){
 function startup(){
 	document.addEventListener('DOMContentLoaded',function(){
 		getPort();
-		//trackAndCircle();
 		loadW3HTML();
-		//callFormData();
 	},false);
 }
