@@ -91,10 +91,38 @@ var formDataLayer; // global variable to hold form data for later use
 
 // AJAX request function to load formdata
 function callFormData(){
-	alert(httpPortNumber);
-	alert("This will get all the form data.");
 	formClient = new XMLHttpRequest();
 	var url = "http://developer.cege.ucl.ac.uk:" + httpPortNumber + "/getFormData/" + httpPortNumber; //get url with non-hardcoded port number
+	formClient.open("GET", url, true); // send to server
+	formClient.onreadystatechange = processFormData;
+	try {
+		formClient.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	}
+	catch (e) {
+		// this only works in internet explorer
+	}
+	formClient.send();
+}
+
+// AJAX request function to load London POI data
+function getPOIData(){
+	formClient = new XMLHttpRequest();
+	var url = "http://developer.cege.ucl.ac.uk:" + httpPortNumber + "/getGeoJSON/london_poi/geom"; //get url with non-hardcoded port number
+	formClient.open("GET", url, true); // send to server
+	formClient.onreadystatechange = processFormData;
+	try {
+		formClient.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	}
+	catch (e) {
+		// this only works in internet explorer
+	}
+	formClient.send();
+}
+
+// AJAX request function to load London highways data
+function getHighwaysData(){
+	formClient = new XMLHttpRequest();
+	var url = "http://developer.cege.ucl.ac.uk:" + httpPortNumber + "/getGeoJSON/london_highway/geom"; //get url with non-hardcoded port number
 	formClient.open("GET", url, true); // send to server
 	formClient.onreadystatechange = processFormData;
 	try {
