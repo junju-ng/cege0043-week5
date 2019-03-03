@@ -12,7 +12,7 @@ function startDataUpload(){
 			checkString = checkString + document.getElementById("check"+i).value + "||"
 		}
 	}
-		postString = postString + "&moduleslist=" + checkString;
+		postString = postString + "&modulelist=" + checkString;
 	
 	// get radio button values
 	if (document.getElementById("morning").checked){
@@ -41,8 +41,9 @@ var client; // global variable to hold AJAX request
 // create AJAX requestto upload data
 function processData(postString){
 	client = new XMLHttpRequest();
-	postString = postString + "&port id=" + httpPortNumber;
+	postString = postString + "&port_id=" + httpPortNumber;
 	var url = 'http://developer.cege.ucl.ac.uk:' + httpPortNumber + "/uploadData";
+	//var url = 'http://developer.cege.ucl.ac.uk:' + httpPortNumber + "/reflectData";
 	client.open('POST',url,true);
 	client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	client.onreadystatechange = dataUploaded;

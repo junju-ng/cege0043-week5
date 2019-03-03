@@ -108,9 +108,14 @@ function callFormData(){
 
 // AJAX response function
 function processFormData(){
-	if (formClient.readyState === 4) { // 4 = response from server completely loaded
-		if (formClient.status > 199 && formClient.status < 300) 
+	if (formClient.readState < 4){
+		console.log('Loading...');
+	}
+	else if (formClient.readyState === 4) { // 4 = response from server completely loaded
+		if (formClient.status > 199 && formClient.status < 300) {
 			var formData = formClient.responseText;
+			loadFormDataLayer(formData);
+		}
 	}
 }
 
