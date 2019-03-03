@@ -87,7 +87,7 @@ function loadEarthquakelayer(earthquakedata){
 
 var xhrFormData; // define global variable to process AJAX request to get formdata
 //var allForms;
-var formDataLayer; // global variable to hold form data for later use
+var formDataLayer; // global variable to hold formdata for later use
 
 // AJAX request function to load formdata
 function startFormDataLoad(){
@@ -158,13 +158,55 @@ function loadFormDataLayer(formData){
 	{
 		// use point to layer to create the red points
 		pointToLayer: function(feature, latlng){
-			return L.marker(latlng, {icon: testMarkerRed}).bindPopup("<b>"+
-			feature.properties.place+"</b>");
+			// in this case, build an HTML DIV string using values in the data
+			var htmlString = "<DIV id='popup'" + feature.properties.id + "><h2>" + feature.properties.name + "</h2><br>";
+			htmlString = htmlString + "<h3>" + feature.properties.surname + "</h3><br>";
+			htmlString = htmlString + "<input type='radio' name='answer' id='" + feature.properties.id + " 1'/>" + feature.properties.module + "<br>";
+			htmlString = htmlString + "<input type='radio' name='answer' id='" + feature.properties.id + " 2'/>" + feature.properties.module + "<br>";
+			htmlString = htmlString + "<input type='radio' name='answer' id='" + feature.properties.id + " 3'/>" + feature.properties.module + "<br>";
+			htmlString = htmlString + "<input type='radio' name='answer' id='" + feature.properties.id + " 4'/>" + feature.properties.module + "<br>";
+			htmlString = htmlString + "<button onclick='checkAnswer(" + feature.properties.id + "); return false;'> Submit Answer</button>";
+			
+			// include hidden element with the answer (in this case answer in the first choice
+			// use feature.properties.correct answer for the assignment
+			htmlString = htmlString + "<div id=answer" + feature.properties.id + " hidden>1</div>";
+			htmlString = htmlString + "</div>";
+			
+			return L.marker(latlng, {icon: testMarkerRed}).bindPopup(htmlString);
 			}					
 	}).addTo(mymap);
 			
 	// change the map zoom so that all the data is shown
 	mymap.fitBounds(formDataLayer.getBounds());
+}
+
+// process button click in formData popup
+// will get it to return data sent here but can use this to submit answers to server in assignment
+function checkAnswer(questionID){
+	// get answer from the hidden div
+	// NB - do this BEFORE you close the pop-up as when you close the pop-up the DIV is destroyed
+	var answer = document.getElementById("answer"+questionID).innerHTML;
+	var correctAnswer = false;
+	var answerSelected = 0;
+	// loop through all 4 radio buttons
+	for (var i=1; i<5; i++){
+		if (document.getElementById(questionID + " " + i).checked){
+			answerSelected = 1;
+		}
+		if ((document.getElementById(questionID+ " " + i).checked) && (i == answer)){
+			alert("Well done");
+			correctAnswer = true;
+		}
+	}
+	if (correctAnswer === false){
+		alert("Better luck next time");
+	}
+	//close the popup
+	mymap.closePopup();
+	
+	//code to upload the answer to the server would go here
+	// call an AJAX routine using the data
+	// the answerSelected variable holds the number of the answer that the user picked
 }
 	
 // create red test marker
